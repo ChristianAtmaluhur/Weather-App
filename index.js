@@ -25,12 +25,31 @@ navigator.geolocation.getCurrentPosition((position) => {
         const {
             name, wind, main, weather
         } = data
+
+
         
+        const cityName = document.querySelector('.city')
+        let weatherImg = document.querySelector('.weather-icon')
         const temp = document.querySelector('.temp h1')
         const weatherName = document.querySelector('.weather-name')
-        const cityName = document.querySelector('.city')
         const windSpeed = document.querySelector('.wind')
         const hum = document.querySelector('.hum')
+
+        // Ganti ke Switch 
+        // Dikondisikan lagi siang dan malam
+        if (weather[0].main == 'Clouds') {
+            weatherImg.src = 'img/partly-cloudy-day.png'
+        } else if (weather[0].main == 'Thunderstorm') {
+            weatherImg.src = 'img/thunderstorm-showers.png'
+        } else if (weather[0].main == 'Drizzle') {
+            weatherImg.src = 'img/heavy-showers.png'
+        } else if (weather[0].main == 'Rain') {
+            weatherImg.src = 'img/showes.png'
+        } else if (weather[0].main == 'Snow') {
+            weatherImg.src = 'img/snow.png'
+        } else {
+            weatherImg.src = 'img/fog.png'
+        }
         
         temp.textContent = Math.floor(main.temp / 10) 
         weatherName.textContent = weather[0].description
