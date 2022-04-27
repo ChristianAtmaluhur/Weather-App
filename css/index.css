@@ -1,1 +1,172 @@
 @import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap');
+
+section {
+    font-family: 'Overpass';
+    width: 100%;
+    height: 150vh;
+    display: flex;
+    justify-content: center;
+    padding-top: 150px;
+}
+
+.container {
+    width: 385px;
+    height: 830px;
+    border-radius: 15px;
+    background: linear-gradient(192.05deg, #47BFDF 0%, #4A91FF 100%);
+    box-shadow: -5px 10px 40px 3px rgba(19, 35, 78, 0.2);
+    padding: 50px 30px 35px;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+header img {
+    width: 30px;
+    height: 30px;
+}
+
+header .left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+header .left h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 28px;
+    color: #fff;
+    text-shadow: -1.85429px 2.78143px 0.927143px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.weather-icon {
+    width: 180px;
+    height: 180px;
+}
+
+.box {
+    width: 328px;
+    height: 311px;
+    background: rgba(255, 255, 255, 0.3);
+    filter: blur(.4px);
+    border-radius: 18.5429px;
+    border: 1px solid #fff;
+    text-align: center;
+    padding: 16px 0 25px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.date {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16.6886px;
+    line-height: 21px;
+    color: #fff;
+    text-shadow: -1.85429px 2.78143px 0.927143px rgba(0, 0, 0, 0.1);
+}
+
+.temp {
+    margin: 3px 0 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.temp h1 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 98px;
+    line-height: 117px;
+    color: #fff;
+    text-shadow: -3.70857px 7.41714px 46.3571px rgba(0, 0, 0, 0.1);
+}
+
+.temp p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 67px;
+    line-height: 85px;
+    color: #FFFFFF;
+    text-shadow: -3.70857px 7.41714px 46.3571px rgba(0, 0, 0, 0.1);
+}
+
+.weather-name {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 28px;
+    color: #FFFFFF;
+    text-shadow: -1.85429px 2.78143px 0.927143px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+}
+
+.list-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.list img {
+    width: 22px;
+    height: 22px;
+}
+
+.list .line {
+    width: 15px;
+    border: 1px solid #fff;
+    background: #fff;
+    transform: rotate(90deg);
+}
+
+.list p {
+    font-family: 'Overpass';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16.6886px;
+    line-height: 21px;
+    color: #FFFFFF;
+    text-shadow: -1.85429px 2.78143px 0.927143px rgba(0, 0, 0, 0.1);
+}
+
+.btn-container {
+    text-align: center;
+}
+
+.report-btn {
+    margin: 50px auto;
+    border: none;
+    width: 203.97px;
+    height: 59.34px;
+    left: 89.93px;
+    top: 738.01px;
+    background: #FFFFFF;
+    box-shadow: -3.70857px 7.41714px 46.3571px 3.70857px rgba(0, 0, 0, 0.1), inset 1.85429px -2.78143px 5.56286px rgba(0, 0, 0, 0.25), inset -5.56286px 3.70857px 3.70857px rgba(255, 255, 255, 0.25);
+    border-radius: 18.5429px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16.6886px;
+    line-height: 21px;
+    color: #444E72;
+    cursor: pointer;
+}
