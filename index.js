@@ -35,6 +35,32 @@ navigator.geolocation.getCurrentPosition((position) => {
         const windSpeed = document.querySelector('.wind')
         const hum = document.querySelector('.hum')
 
+        let tempNum = Math.floor(main.temp / 10)
+        let isCelcius = true
+        const cBtn = document.querySelector('.c-btn')
+        const fBtn = document.querySelector('.f-btn')
+        cBtn.style.fontWeight = 700
+
+        cBtn.addEventListener('click', () => {
+            cBtn.style.fontWeight = 700
+            fBtn.style.fontWeight = 400
+            if(!isCelcius) {
+                tempNum = (tempNum - 32) * 5 / 9 
+                temp.textContent = tempNum
+                isCelcius = true
+            }
+        })
+
+        fBtn.addEventListener('click', () => {
+            fBtn.style.fontWeight = 700
+            cBtn.style.fontWeight = 400
+            if(isCelcius) {
+                tempNum = (tempNum * 9 / 5) + 32
+                temp.textContent = tempNum
+                isCelcius = false
+            }
+        })
+
         // Ganti ke Switch 
         // Dikondisikan lagi siang dan malam
         if (weather[0].main == 'Clouds') {
@@ -50,8 +76,8 @@ navigator.geolocation.getCurrentPosition((position) => {
         } else {
             weatherImg.src = 'img/fog.png'
         }
-        
-        temp.textContent = Math.floor(main.temp / 10) 
+
+        temp.textContent = tempNum
         weatherName.textContent = weather[0].description
         cityName.textContent = name
         windSpeed.textContent = wind.speed

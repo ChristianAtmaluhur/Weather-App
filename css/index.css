@@ -81,7 +81,7 @@ header .left h1 {
 }
 
 .temp {
-    margin: 3px 0 20px;
+    margin: 3px 0 0;
     display: flex;
     justify-content: center;
 }
@@ -104,6 +104,36 @@ header .left h1 {
     text-shadow: -3.70857px 7.41714px 46.3571px rgba(0, 0, 0, 0.1);
 }
 
+.btn-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.btn-box button {
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    background-color: transparent;
+    font-family: 'Overpass';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16.6886px;
+    line-height: 21px;
+    color: #FFFFFF;
+    text-shadow: -1.85429px 2.78143px 0.927143px rgba(0, 0, 0, 0.1);
+}
+
+.btn-box .line {
+    width: 15px;
+    height: fit-content;
+    border: 1px solid #fff;
+    background: #fff;
+    transform: rotate(90deg);
+}
+
 .weather-name {
     font-style: normal;
     font-weight: 700;
@@ -111,7 +141,7 @@ header .left h1 {
     line-height: 28px;
     color: #FFFFFF;
     text-shadow: -1.85429px 2.78143px 0.927143px rgba(0, 0, 0, 0.1);
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 
 .list-container {
