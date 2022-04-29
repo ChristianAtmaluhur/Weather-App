@@ -1,5 +1,4 @@
-
-
+const APIKey = '8769f4545ea2c79a35ef17dbcec226bc'
 
 // Menentukan Tanggal Sekarang
 function currentDate() {
@@ -20,22 +19,24 @@ function currentDate() {
 // Mendapatkan Lokasi Sekarang
 navigator.geolocation.getCurrentPosition((position) => {
     const p = position.coords;
-    const APIKey = '8769f4545ea2c79a35ef17dbcec226bc'
     playFetch(p, APIKey)
 })
 
 // Fetch untuk memanggil API
-function playFetch(p, APIKey) {
-    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${p.latitude}&lon=${p.longitude}&appid=${APIKey}`
+function playFetch(p, APIKey, inputValue) {
+    let used;
+    let inputCity = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${APIKey}`
+    let currentLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${p.latitude}&lon=${p.longitude}&appid=${APIKey}`
 
-    fetch(url)
+    p == ''? used = inputCity : used = currentLocation
+
+    fetch(used)
     .then(response => response.json())
     .then(data => {
-        // console.log(data);
+        console.log(data);
         const {
-            name, wind, main, weather
+            name, wind, main, weather, message
         } = data
-
         mainFunc(name, wind, main, weather)
     })
 }
@@ -75,20 +76,34 @@ function mainFunc(name, wind, main, weather) {
             }
         })
 
-        // Ganti ke Switch 
-        // Dikondisikan lagi siang dan malam
-        if (weather[0].main == 'Clouds') {
-            weatherImg.src = 'img/partly-cloudy-day.png'
-        } else if (weather[0].main == 'Thunderstorm') {
-            weatherImg.src = 'img/thunderstorm-showers.png'
-        } else if (weather[0].main == 'Drizzle') {
-            weatherImg.src = 'img/heavy-showers.png'
-        } else if (weather[0].main == 'Rain') {
-            weatherImg.src = 'img/showes.png'
-        } else if (weather[0].main == 'Snow') {
-            weatherImg.src = 'img/snow.png'
-        } else {
-            weatherImg.src = 'img/fog.png'
+        const time = formatAMPM(new Date)
+        switch (weather[0].main) {
+            case 'Clear':
+                time == 'am'? weatherImg.src = 'img/clear-day.png' : weatherImg.src = 'img/clear-night.png'
+            case 'Clouds':
+                if (time == 'am') {
+                    weatherImg.src = 'img/partly-cloudy-day.png'
+                } else if (weather[0].description == 'broken clouds' || weather[0].description == 'overcast clouds') {
+                    weatherImg.src = 'img/overcast.png'
+                } else {
+                    weatherImg.src = 'img/partly-cloudy-night.png'
+                }
+                break;
+            case 'Thunderstorm':
+                weatherImg.src = 'img/thunderstorm-showers.png'
+                break;
+            case 'Drizzle':
+                weatherImg.src = 'img/heavy-showers.png'
+                break;
+            case 'Rain':
+                weatherImg.src = 'img/showers.png'
+                break;
+            case 'Snow':
+                weatherImg.src = 'img/snow.png'
+                break;
+            default:
+                weatherImg.src = 'img/fog.png'
+                break;
         }
 
         temp.textContent = tempNum
@@ -104,7 +119,21 @@ const input = document.querySelector('form input')
 
 form.addEventListener('submit', e => {
     e.preventDefault()
+    playFetch('', APIKey, input.value)
+    input.value = ''
 })
+
+// function untuk menentukan waktu pagi atau malam
+function formatAMPM(date) {
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = ampm;
+    return strTime;
+}
 
 
 

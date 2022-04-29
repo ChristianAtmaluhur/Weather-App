@@ -57,7 +57,7 @@ header .left h1 {
 }
 
 .weather-icon {
-    width: 180px;
+    width: 200px;
     height: 180px;
 }
 
@@ -196,7 +196,7 @@ header .left h1 {
 }
 
 .new-loc header {
-    height: 375px;
+    height: 150px;
     background: #FCFCFC;
     border-radius: 15px 15px 30px 30px;
     padding: 50px 30px 0px;
@@ -233,7 +233,7 @@ form img {
 form input {
     border: none;
     background-color: transparent;
-    width: 100%;
+    width: 90%;
     height: 26px;
     font-family: 'Overpass';
     font-style: normal;
