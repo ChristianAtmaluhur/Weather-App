@@ -6,12 +6,13 @@ section {
     height: 150vh;
     display: flex;
     justify-content: center;
-    padding-top: 150px;
+    padding-top: 50px;
+    gap: 50px;
 }
 
 .container {
     width: 385px;
-    height: 830px;
+    height: 700px;
     border-radius: 15px;
     background: linear-gradient(192.05deg, #47BFDF 0%, #4A91FF 100%);
     box-shadow: -5px 10px 40px 3px rgba(19, 35, 78, 0.2);
@@ -19,7 +20,7 @@ section {
     box-sizing: border-box;
 }
 
-header {
+.container header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -49,6 +50,10 @@ header .left h1 {
 .logo {
     text-align: center;
     margin-bottom: 30px;
+}
+
+.setting-btn {
+    cursor: pointer;
 }
 
 .weather-icon {
@@ -173,30 +178,73 @@ header .left h1 {
     font-family: 'Overpass';
     font-style: normal;
     font-weight: 400;
-    font-size: 16.6886px;
+    font-size: 17px;
     line-height: 21px;
     color: #FFFFFF;
     text-shadow: -1.85429px 2.78143px 0.927143px rgba(0, 0, 0, 0.1);
 }
 
-.btn-container {
-    text-align: center;
+
+/* new location card */
+.new-loc {
+    width: 385px;
+    height: 700px;
+    border-radius: 15px;
+    background: linear-gradient(192.05deg, #47BFDF 0%, #4A91FF 100%);
+    box-shadow: -5px 10px 40px 3px rgba(19, 35, 78, 0.2);
+    box-sizing: border-box;
 }
 
-.report-btn {
-    margin: 50px auto;
-    border: none;
-    width: 203.97px;
-    height: 59.34px;
-    left: 89.93px;
-    top: 738.01px;
+.new-loc header {
+    height: 375px;
+    background: #FCFCFC;
+    border-radius: 15px 15px 30px 30px;
+    padding: 50px 30px 0px;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.new-loc header form {
+    width: 100%;
+    height: 53px;
     background: #FFFFFF;
-    box-shadow: -3.70857px 7.41714px 46.3571px 3.70857px rgba(0, 0, 0, 0.1), inset 1.85429px -2.78143px 5.56286px rgba(0, 0, 0, 0.25), inset -5.56286px 3.70857px 3.70857px rgba(255, 255, 255, 0.25);
-    border-radius: 18.5429px;
+    box-shadow: inset 1.85429px -2.78143px 5.56286px rgba(0, 0, 0, 0.1), inset -5.56286px 3.70857px 3.70857px rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+form button {
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    background-color: transparent;
+}
+
+form img {
+    width: 22px;
+    height: 22px;
+}
+
+form input {
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    height: 26px;
+    font-family: 'Overpass';
     font-style: normal;
     font-weight: 400;
-    font-size: 16.6886px;
+    font-size: 17px;
     line-height: 21px;
-    color: #444E72;
-    cursor: pointer;
+    color: #838BAA;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
 }

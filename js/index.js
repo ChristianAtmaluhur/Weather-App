@@ -1,34 +1,48 @@
-// Tanggal
-const month = ['Januari', 'Februari', 'Maret','April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
-const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 
-const date = document.querySelector('.date')
 
-const d = new Date();
-const dayName = days[d.getDay()];
-const dd = String(d.getDate()).padStart(2, '0');
-const mm = d.getMonth(); 
-const nowDate = `${dayName}, ${dd} ${month[mm]}`;
 
-date.textContent = nowDate
+// Menentukan Tanggal Sekarang
+function currentDate() {
+    const month = ['Januari', 'Februari', 'Maret','April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+    const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+
+    const date = document.querySelector('.date')
+
+    const d = new Date();
+    const dayName = days[d.getDay()];
+    const dd = String(d.getDate()).padStart(2, '0');
+    const mm = d.getMonth(); 
+    const nowDate = `${dayName}, ${dd} ${month[mm]}`;
+
+    date.textContent = nowDate
+}
 
 // Mendapatkan Lokasi Sekarang
 navigator.geolocation.getCurrentPosition((position) => {
     const p = position.coords;
     const APIKey = '8769f4545ea2c79a35ef17dbcec226bc'
+    playFetch(p, APIKey)
+})
 
+// Fetch untuk memanggil API
+function playFetch(p, APIKey) {
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${p.latitude}&lon=${p.longitude}&appid=${APIKey}`
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${p.latitude}&lon=${p.longitude}&appid=${APIKey}`)
+    fetch(url)
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        // console.log(data);
         const {
             name, wind, main, weather
         } = data
 
+        mainFunc(name, wind, main, weather)
+    })
+}
 
-        
-        const cityName = document.querySelector('.city')
+// Menampilkan data dari API
+function mainFunc(name, wind, main, weather) {
+    const cityName = document.querySelector('.city')
         let weatherImg = document.querySelector('.weather-icon')
         const temp = document.querySelector('.temp h1')
         const weatherName = document.querySelector('.weather-name')
@@ -82,11 +96,15 @@ navigator.geolocation.getCurrentPosition((position) => {
         cityName.textContent = name
         windSpeed.textContent = wind.speed
         hum.textContent = main.humidity
-    })
+}
+
+//Form 
+const form = document.querySelector('form')
+const input = document.querySelector('form input')
+
+form.addEventListener('submit', e => {
+    e.preventDefault()
 })
-
-
-
 
 
 
