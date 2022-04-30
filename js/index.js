@@ -1,5 +1,21 @@
 const APIKey = '8769f4545ea2c79a35ef17dbcec226bc'
 
+const newLocCard = document.querySelector('.new-loc')
+const backBtn = document.querySelector('.back-btn')
+const setBtn = document.querySelector('.set-btn')
+const currentLocationBtn = document.querySelector('.cLocation-btn')
+backBtn.addEventListener('click', () => {
+    newLocCard.style.display = 'none'
+})
+
+setBtn.addEventListener('click', () => {
+    newLocCard.style.display = 'block'
+})
+
+currentLocationBtn.addEventListener('click', () => {
+    getCurrentLocation()
+})
+
 // Menentukan Tanggal Sekarang
 function currentDate() {
     const month = ['Januari', 'Februari', 'Maret','April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
@@ -17,10 +33,13 @@ function currentDate() {
 }
 
 // Mendapatkan Lokasi Sekarang
-navigator.geolocation.getCurrentPosition((position) => {
-    const p = position.coords;
-    playFetch(p, APIKey)
-})
+function getCurrentLocation() {
+    navigator.geolocation.getCurrentPosition((position) => {
+        const p = position.coords;
+        playFetch(p, APIKey)
+    })
+}
+
 
 // Fetch untuk memanggil API
 function playFetch(p, APIKey, inputValue) {
@@ -37,6 +56,11 @@ function playFetch(p, APIKey, inputValue) {
         const {
             name, wind, main, weather, message
         } = data
+
+        if(message) {
+            alert(message)
+        }
+
         mainFunc(name, wind, main, weather)
     })
 }
@@ -80,11 +104,12 @@ function mainFunc(name, wind, main, weather) {
         switch (weather[0].main) {
             case 'Clear':
                 time == 'am'? weatherImg.src = 'img/clear-day.png' : weatherImg.src = 'img/clear-night.png'
+                break;``
             case 'Clouds':
-                if (time == 'am') {
-                    weatherImg.src = 'img/partly-cloudy-day.png'
-                } else if (weather[0].description == 'broken clouds' || weather[0].description == 'overcast clouds') {
+                if (weather[0].description == 'broken clouds' || weather[0].description == 'overcast clouds') {
                     weatherImg.src = 'img/overcast.png'
+                } else if (time == 'am') {
+                    weatherImg.src = 'img/partly-cloudy-day.png'
                 } else {
                     weatherImg.src = 'img/partly-cloudy-night.png'
                 }
