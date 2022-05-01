@@ -1,5 +1,9 @@
 const APIKey = '8769f4545ea2c79a35ef17dbcec226bc'
 
+const recentSearch = []
+const recentContainer = document.querySelector('.recent-container')
+
+
 const newLocCard = document.querySelector('.new-loc')
 const backBtn = document.querySelector('.back-btn')
 const setBtn = document.querySelector('.set-btn')
@@ -47,21 +51,27 @@ function playFetch(p, APIKey, inputValue) {
     let inputCity = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${APIKey}`
     let currentLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${p.latitude}&lon=${p.longitude}&appid=${APIKey}`
 
-    p == ''? used = inputCity : used = currentLocation
+    if(p == '') {
+        used = inputCity
+        recentSearch.unshift(inputValue)
+    } else {
+        used = currentLocation
+    }
 
     fetch(used)
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         const {
             name, wind, main, weather, message
         } = data
 
         if(message) {
             alert(message)
-        }
-
+            recentSearch.pop(inputValue)
+        } 
         mainFunc(name, wind, main, weather)
+        const filterArray = uniq(recentSearch)
+        displayRecentSearch(filterArray)
     })
 }
 
@@ -100,7 +110,7 @@ function mainFunc(name, wind, main, weather) {
             }
         })
 
-        const time = formatAMPM(new Date)
+        const time = formatDayNight(new Date)
         switch (weather[0].main) {
             case 'Clear':
                 time == 'am'? weatherImg.src = 'img/clear-day.png' : weatherImg.src = 'img/clear-night.png'
@@ -149,16 +159,37 @@ form.addEventListener('submit', e => {
 })
 
 // function untuk menentukan waktu pagi atau malam
-function formatAMPM(date) {
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var ampm = hours >= 12 ? 'pm' : 'am';
+function formatDayNight(date) {
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let ampm = hours >= 18 ? 'pm' : 'am';
     hours = hours % 12;
     hours = hours ? hours : 12; // the hour '0' should be '12'
     minutes = minutes < 10 ? '0'+minutes : minutes;
-    var strTime = ampm;
+    const  strTime = ampm;
     return strTime;
 }
 
+// function untuk menghilangkan value yang sama pada array recentSearch
+function uniq(requested) {
+    return Array.from(new Set(requested));
+}
 
+// funtion untuk menampilkan value array ke recent search
+function displayRecentSearch(filterArray) {
+    let cardDOM = ''
+    for(let i = 0; i < filterArray.length; i++) {
+        cardDOM += `
+            <div class="recent-card">
+                <img src="img/clock line.png">
+                <h1>${filterArray[i]}</h1>
+            </div>
+        `
+
+        if(i > 2) {
+            return false
+        }
+    }
+    recentContainer.innerHTML = cardDOM
+}
 
