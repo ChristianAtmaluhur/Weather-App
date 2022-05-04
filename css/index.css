@@ -213,7 +213,7 @@ header .left h1 {
 
 /* new location card */
 .new-loc {
-    display: block;
+    display: none;
 }
 
 .new-loc header {
@@ -257,10 +257,6 @@ input:focus,
 textarea:focus,
 select:focus {
     outline: none;
-}
-
-.recent {
-    /* display: none; */
 }
 
 .recent p {

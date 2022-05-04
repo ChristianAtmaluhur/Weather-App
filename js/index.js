@@ -1,6 +1,7 @@
 const APIKey = '8769f4545ea2c79a35ef17dbcec226bc'
 
 const recentSearch = []
+const recent = document.querySelector('.recent')
 const recentContainer = document.querySelector('.recent-container')
 
 
@@ -67,11 +68,10 @@ function playFetch(p, APIKey, inputValue) {
 
         if(message) {
             alert(message)
-            recentSearch.pop(inputValue)
+            recentSearch.shift(inputValue)
         } 
         mainFunc(name, wind, main, weather)
-        const filterArray = uniq(recentSearch)
-        displayRecentSearch(filterArray)
+        displayRecentSearch()
     })
 }
 
@@ -176,7 +176,17 @@ function uniq(requested) {
 }
 
 // funtion untuk menampilkan value array ke recent search
-function displayRecentSearch(filterArray) {
+function displayRecentSearch() {
+    if(!recentSearch.length == 0) {
+        recent.style.display = 'block'
+    }
+
+    const filterArray = uniq(recentSearch)
+
+    if(recentSearch.length > 5) {
+        recentSearch.pop()
+    }
+
     let cardDOM = ''
     for(let i = 0; i < filterArray.length; i++) {
         cardDOM += `
@@ -186,10 +196,22 @@ function displayRecentSearch(filterArray) {
             </div>
         `
 
-        if(i > 2) {
-            return false
+        recentContainer.innerHTML = cardDOM
+
+        
+        console.log(recentSearch);
+        console.log(filterArray);
+        if(i == 2) {
+            i = filterArray.length + 1
         }
     }
-    recentContainer.innerHTML = cardDOM
+    const recentBtns = document.querySelectorAll('.recent-card')
+
+    recentBtns.forEach(btn => {
+        btn.addEventListener('click', e => {
+            const element = e.currentTarget.childNodes
+            playFetch('', APIKey, element[3].textContent)
+        })
+    });
 }
 
