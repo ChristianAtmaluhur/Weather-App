@@ -21,8 +21,7 @@ section {
     gap: 50px;
 }
 
-.container,
-.new-loc {
+.set-container {
     width: 385px;
     height: 700px;
     border-radius: 15px;
@@ -30,23 +29,11 @@ section {
     box-shadow: -5px 10px 40px 3px rgba(19, 35, 78, 0.2);
 }
 
-.container header,
-header .left,
-.temp,
-.box,
-.btn-box,
-.list,
-.new-loc header,
-.new-loc header .form-container {
+.flex {
     display: flex;
 }
 
-.container header,
-header .left,
-.box,
-.btn-box,
-.list,
-.new-loc header .form-container {
+.align-center {
     align-items: center;
 }
 
